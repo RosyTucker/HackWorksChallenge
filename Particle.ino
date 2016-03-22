@@ -5,7 +5,7 @@
 
 #include "rest_client.h"
 
-RestClient client = RestClient("https://hackworks-challenge.herokuapp.com/");
+RestClient client = RestClient("https://hackworks-challenge.herokuapp.com");
 
 //Setup
 void setup() {
