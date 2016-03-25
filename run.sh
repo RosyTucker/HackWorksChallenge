@@ -7,6 +7,13 @@ then
 fi;
 
 rm photon_firmware_*
-output=$(particle compile photon . | tail -1 | grep -o photon_firmware_.*\.bin)
-echo "Create firmware: $output"
+
+result=$(particle compile photon .)
+
+echo "$result"
+
+set -e
+
+output=$(echo "$result" | tail -1 | grep -o photon_firmware_.*\.bin)
+echo "Created firmware: $output"
 particle flash $1 $output
