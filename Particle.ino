@@ -1,26 +1,20 @@
-/* RestClient simple GET request
- *
- * credit: Chris Continanza (csquared)
- */
+#include "WebClient.h"
 
-#include "rest_client.h"
+WebClient webClient = WebClient("hackworks-challenge.herokuapp.com");
 
-RestClient client = RestClient("https://hackworks-challenge.herokuapp.com");
-
-//Setup
 void setup() {
-  Serial.begin(9600);
-  Serial.println("starting...");
-
+  Serial.println("Starting...");
 }
 
-String response;
-void loop(){
-  response = "";
-  int statusCode = client.get("/task", &response);
-  Serial.print("Status code from server: ");
-  Serial.println(statusCode);
-  Serial.print("Response body from server: ");
-  Serial.println(response);
-  delay(1000);
+void loop() {
+ String response = webClient.get("/task");
+  String body = getResponseBody(response);
+
+  delay(5000);
+}
+
+String getResponseBody (String response) {
+  int bodyStartIndex = response.indexOf("\n\r") + 4;
+  response.remove(0, bodyStartIndex);
+  return response;
 }
