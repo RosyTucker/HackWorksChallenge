@@ -10,4 +10,4 @@ Compile and run latest
 
 - Run `./buildAndRun <YourDeviceName>`
 
-- Manually: `particle compile photon ParticleJS/` then `particle flash <DeviceName> <photon_firmware_SOMETHING.bin>`
+- Manually: `cd ..` then `particle compile photon ParticleJS/` then `particle flash <DeviceName> <photon_firmware_SOMETHING.bin>`
