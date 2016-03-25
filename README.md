@@ -2,6 +2,7 @@ HackWorks Challenge
 ========
 
 - Install node, using brew on OSX `brew update && brew install node`
+- Install the *Particle Dev* IDE from [here](https://www.particle.io/dev)
 - Install particle CLI `npm install -g particle-cli`
 - Run `particle login` and enter the credentials provided (this sucks I know)
 
@@ -20,3 +21,8 @@ Compile and run latest
 ------
 
 - Run `./run <YourDeviceName>`
+
+Start writing code
+------
+
+- Open `Particle.ino` in the Particle Dev IDE and get typing
