@@ -10,7 +10,7 @@ void setup() {
 void loop() {
   Task task = TaskReceiver().fetch();
   performTask(task.destination, task.type);
-  delay(5000);
+  delay(2500);
 }
 
 void performTask(String destination, int type) {
