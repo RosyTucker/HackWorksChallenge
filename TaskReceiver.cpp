@@ -1,6 +1,6 @@
-#include "TaskCollector.h"
+#include "TaskReceiver.h"
 
-Task TaskCollector::fetch() {
+Task TaskReceiver::fetch() {
   Task task;
   String response = webClient.get("/task");
   String body = getResponseBody(response);
@@ -11,20 +11,20 @@ Task TaskCollector::fetch() {
   return task;
 }
 
-String TaskCollector::getResponseBody (String response) {
+String TaskReceiver::getResponseBody (String response) {
   int bodyStartIndex = response.indexOf("\n\r") + 4;
   response.remove(0, bodyStartIndex);
   return response;
 }
 
-String TaskCollector::getDestinationFromBody (String body) {
+String TaskReceiver::getDestinationFromBody (String body) {
   String searchTerm = "\"destination\":\"";
   int firstDestinationIndex = body.indexOf(searchTerm) + searchTerm.length();
   body.remove(0, firstDestinationIndex);
   return body.substring(0, 3);
 }
 
-int TaskCollector::getTypeFromBody (String body) {
+int TaskReceiver::getTypeFromBody (String body) {
   String searchTerm = "\"type\":";
   int firstTypeIndex = body.indexOf(searchTerm) + searchTerm.length();
   body.remove(0, firstTypeIndex);

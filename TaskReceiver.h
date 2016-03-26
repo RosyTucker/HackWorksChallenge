@@ -7,7 +7,7 @@ struct Task {
   String destination;
 };
 
-class TaskCollector {
+class TaskReceiver {
 
   public:
     Task fetch();
