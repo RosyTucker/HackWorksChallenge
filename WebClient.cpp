@@ -1,29 +1,39 @@
-
 #include "WebClient.h"
 
-#ifndef DEBUG
+/*#ifdef DEBUG*/
 #define PRINT(string) (Serial.print(string))
-#endif
+/*#endif*/
 
-#ifdef DEBUG
+/*#ifdef DEBUG
 #define PRINT(string)
-#endif
+#endif*/
 
 WebClient::WebClient(const char* _host){
   host = _host;
 }
 
 String WebClient::get(const char* endPoint){
-  sendRequest(endPoint);
+  sendRequest("GET", endPoint, NULL);
   return createResponse();
 }
 
-void WebClient::sendRequest(const char* endPoint) {
+String WebClient::post(const char* endPoint, const char* body){
+  sendRequest("POST", endPoint, body);
+  return createResponse();
+}
+
+String WebClient::getResponseBody (String response) {
+  int bodyStartIndex = response.indexOf("\n\r") + 4;
+  response.remove(0, bodyStartIndex);
+  return response;
+}
+
+void WebClient::sendRequest(const char* verb, const char* endPoint, const char* body) {
   if (client.connect(host, 80)) {
     PRINT("Connected");
 
     char requestLineOne [50];
-    sprintf(requestLineOne, "GET %s HTTP/1.1", endPoint);
+    sprintf(requestLineOne, "%s %s HTTP/1.1", verb, endPoint);
 
     char requestLineTwo [50];
     sprintf(requestLineTwo, "Host: %s", host);
@@ -31,7 +41,23 @@ void WebClient::sendRequest(const char* endPoint) {
     client.println(requestLineOne);
     client.println(requestLineTwo);
     client.println("Connection: close");
-    client.println();
+
+    if(body != NULL) {
+      char contentLength[25];
+      sprintf(contentLength, "Content-Length: %d", strlen(body));
+      client.println(contentLength);
+
+      client.println("Content-Type: application/json");
+
+      client.println();
+
+      client.println(body);
+
+      client.println();
+      client.println();
+    } else {
+      client.println();
+    }
   }
 }
 

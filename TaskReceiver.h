@@ -1,6 +1,5 @@
-
-#include "application.h"
 #include "WebClient.h"
+#include "application.h"
 
 struct Task {
   int type;
@@ -8,7 +7,6 @@ struct Task {
 };
 
 class TaskReceiver {
-
   public:
     Task fetch();
 

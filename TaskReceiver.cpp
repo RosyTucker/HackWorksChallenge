@@ -3,18 +3,12 @@
 Task TaskReceiver::fetch() {
   Task task;
   String response = webClient.get("/task");
-  String body = getResponseBody(response);
+  String body = webClient.getResponseBody(response);
   task.destination = getDestinationFromBody(body);
   task.type = getTypeFromBody(body);
 
   Serial.println("Recieved Task for: " + task.destination + " with type: " + task.type);
   return task;
-}
-
-String TaskReceiver::getResponseBody (String response) {
-  int bodyStartIndex = response.indexOf("\n\r") + 4;
-  response.remove(0, bodyStartIndex);
-  return response;
 }
 
 String TaskReceiver::getDestinationFromBody (String body) {
