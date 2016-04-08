@@ -1,5 +1,8 @@
 #include "TaskReceiver.h"
 
+/*#define PRINT(string) (Serial.print(string))*/
+#define PRINT(string)
+
 Task TaskReceiver::fetch() {
   Task task;
   String response = webClient.get("/task");
@@ -7,7 +10,7 @@ Task TaskReceiver::fetch() {
   task.destination = getDestinationFromBody(body);
   task.type = getTypeFromBody(body);
 
-  Serial.println("Recieved Task for: " + task.destination + " with type: " + task.type);
+  PRINT("Recieved Task for: " + task.destination + " with type: " + task.type);
   return task;
 }
 

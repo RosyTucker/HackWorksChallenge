@@ -1,12 +1,7 @@
 #include "WebClient.h"
 
-/*#ifdef DEBUG*/
-#define PRINT(string) (Serial.print(string))
-/*#endif*/
-
-/*#ifdef DEBUG
+/*#define PRINT(string) (Serial.print(string))*/
 #define PRINT(string)
-#endif*/
 
 WebClient::WebClient(const char* _host){
   host = _host;

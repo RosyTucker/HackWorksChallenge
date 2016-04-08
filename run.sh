@@ -8,7 +8,7 @@ fi;
 
 rm photon_firmware_*
 
-result=$(particle compile photon .)
+result=$(particle compile photon ./firmware)
 
 echo "$result"
 

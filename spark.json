@@ -1,0 +1,7 @@
+{
+  "name": "hackworks-challenge",
+  "author": "Rose Tucker <rtucker@thoughtworks.com>",
+  "license": "MIT",
+  "version": "0.0.1",
+  "description": "A Library for the Hackworks Hardware Challenge"
+}
