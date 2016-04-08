@@ -1,3 +1,5 @@
+#pragma once
+
 #include "WebClient.h"
 #include "application.h"
 
